@@ -4,9 +4,9 @@ pipeline {
         nodejs 'Node7'
     }
     environment {
-        IMAGE_TAG = "${env.BRANCH_NAME == 'release' ? 'widgetrelease:v1.0' : 'widgetstaging:v1.0'}"
+        IMAGE_TAG = "${env.BRANCH_NAME == 'release' ? 'nodemain:v1.0' : 'nodedev:v1.0'}"
         HOST_PORT = "${env.BRANCH_NAME == 'release' ? '5000' : '5001'}"
-        CONTAINER_NAME = "${env.BRANCH_NAME == 'release' ? 'widget-release' : 'widget-staging'}"
+        CONTAINER_NAME = "${env.BRANCH_NAME == 'release' ? 'node-main' : 'node-dev'}"
     }
     stages {
         stage('Checkout') {
