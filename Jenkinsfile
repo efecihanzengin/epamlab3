@@ -16,12 +16,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'yarn install'
+                sh 'npm install'
             }
         }
         stage('Test') {
             steps {
-                sh 'yarn test'
+                sh 'npm test'
             }
         }
         stage('Docker Build') {
