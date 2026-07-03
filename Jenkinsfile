@@ -4,9 +4,9 @@ pipeline {
         nodejs 'Node7'
     }
     environment {
-        IMAGE_TAG = "${env.BRANCH_NAME == 'release' ? 'nodemain:v1.0' : 'nodedev:v1.0'}"
-        HOST_PORT = "${env.BRANCH_NAME == 'release' ? '5000' : '5001'}"
-        CONTAINER_NAME = "${env.BRANCH_NAME == 'release' ? 'node-main' : 'node-dev'}"
+        IMAGE_TAG = "${env.BRANCH_NAME == 'main' ? 'nodemain:v1.0' : 'nodedev:v1.0'}"
+        HOST_PORT = "${env.BRANCH_NAME == 'main' ? '3000' : '3001'}"
+        CONTAINER_NAME = "${env.BRANCH_NAME == 'main' ? 'node-main' : 'node-dev'}"
     }
     stages {
         stage('Checkout') {
@@ -34,7 +34,7 @@ pipeline {
                 sh """
                     docker stop ${CONTAINER_NAME} || true
                     docker rm ${CONTAINER_NAME} || true
-                    docker run -d --name ${CONTAINER_NAME} --expose ${HOST_PORT} -p ${HOST_PORT}:5000 ${IMAGE_TAG}
+                    docker run -d --name ${CONTAINER_NAME} --expose ${HOST_PORT} -p ${HOST_PORT}:3000 ${IMAGE_TAG}
                 """
             }
         }
